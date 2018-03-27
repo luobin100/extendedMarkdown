@@ -2,11 +2,18 @@
 $( document ).ready(function() {
 
 
+    // 设置自定义 table class 需要设置  customize 的 marked renderer
     var renderer = new marked.Renderer();
-    // marked 需要自己给table加样式
     renderer.table = function (header, body) {
         return '<table class="table-bordered table-striped">'+header+body+'</table>'
     };
+    // 设置代码的语法高亮显示，要用到 highlight.js 库，使用setOptions来设置。
+    marked.setOptions({
+        renderer: renderer,
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value; // highlight.js 默认的变量名 hljs
+        }
+    });
 
 
     addButtonEvent();

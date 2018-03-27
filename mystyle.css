@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
 }
-
+/* 设置代码块有背景色 */
 pre{
     background-color: #f6f8fa;
 }
