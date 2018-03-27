@@ -7,6 +7,6 @@ define your own markdown syntax
 ```markdown
 precious
 $*gem
-precious stone*$
+precious stone*$  
 previous
 ```
