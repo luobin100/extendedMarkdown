@@ -49,7 +49,8 @@ $( document ).ready(function() {
 function addButtonEvent(){
     $( ".expando-button" ).click(function() {
         $(this).toggleClass("expanded collapsed");
-        $(this).parent().children(".origin-content").toggleClass("expanded collapsed");
+        // $(this).parent().children(".origin-content").toggleClass("expanded collapsed");
+        $(this).next().filter(".origin-content").toggleClass("expanded collapsed");
     });
 }
 
