@@ -1,6 +1,8 @@
 
 $( document ).ready(function() {
 
+    // 获得上次编辑的数据
+    document.getElementById('editor').value = localStorage.editData || "" // 没有数据就设为空
 
     // 设置自定义 table class 需要设置  customize 的 marked renderer
     var renderer = new marked.Renderer();
@@ -110,4 +112,9 @@ function extendedMarkdown(str){
     addButtonEvent();
 
 
+}
+
+// 退出前保存编辑数据，保存到 localStorage
+window.onbeforeunload = function(){
+    localStorage.editData = document.getElementById('editor').value
 }
