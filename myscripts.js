@@ -84,13 +84,28 @@ function extendedMarkdown(str){
             uid: uid,
             innerText: innerText
         });
-        // 要当作 Regex 来用，所以 要加上转义字符 \$\*
-        elementRegex = element.replace(/\$\*/g, "\\$\\*").replace(/\*\$/g, "\\*\\$")
-        var re = new RegExp(elementRegex,"g");
+        // // 要当作 Regex 来用，所以 要加上转义字符 \$\*
+        // elementRegex = element.replace(/\$\*/g, "\\$\\*").replace(/\*\$/g, "\\*\\$")
+        // // .
+        // //                     // 所有的其他正则表达式使用的字符都要转义
+        // //                     replace(/\./g, "\\.").
+        // //                     replace(/\*/g, "\\*").
+        // //                     replace(/\^/g, "\\^").
+        // //                     replace(/\$/g, "\\$").
+        // //                     replace(/\\/g, "\\\\").
+        // //                     replace(/\(/g, "\\(").replace(/\)/g, "\\)").
+        // //                     replace(/\[/g, "\\[").replace(/\]/g, "\\]").
+        // //                     replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+        // var re = new RegExp(elementRegex,"g");
+        // console.log("start-------------",editorVal);
+        // // 就算有两个以上完全一样的内容也没关系，原来是重复的，我等下再replace回来也还是一样的，内容不会变。
+        // editorVal = editorVal.replace(re,uid);
+        // console.log("end-------------",editorVal);
+        //
 
-        // 就算有两个以上完全一样的内容也没关系，原来是重复的，我等下再replace回来也还是一样的，内容不会变。
-        editorVal = editorVal.replace(re,uid)
-
+        // 用 split + join 代替 replace
+        // 这种方法可以不用 regular expression
+        editorVal = editorVal.split(element).join(uid);
 
     });
     console.log(objArr);
@@ -102,8 +117,9 @@ function extendedMarkdown(str){
 
         var strHtml = `<span class="expando-button crosspost collapsed"></span>
                     <textarea rows="3" cols="70" class="origin-content collapsed">${element.innerText}</textarea>`;
-    var re = new RegExp(element.uid,"g");
-    resultHtml = resultHtml.replace(re, strHtml);
+        // var re = new RegExp(element.uid,"g");
+        // resultHtml = resultHtml.replace(re, strHtml);
+        resultHtml = resultHtml.split(element.uid).join(strHtml);
 
     });
     document.getElementById('preview').innerHTML = resultHtml;
